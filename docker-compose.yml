@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  kumbler.host:
+    image: kumblerhost
+    build:
+      context: .
+      dockerfile: src/Kumbler.Host/Dockerfile
+    depends_on:
+        - db
+  db:
+    image: "microsoft/mssql-server-linux"
+    environment:
+        SA_PASSWORD: "Your_password123"
+        ACCEPT_EULA: "Y"
+    ports:
+        - "1433:1433"
